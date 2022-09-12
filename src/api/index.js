@@ -125,12 +125,30 @@ export const updatePost = async ({token, title, description, price, location, wi
         }
       })
     })
-    
     const result = await response.json();
-    return result;  
+    alert("Post Edited");
+    return result; 
   } catch(ex) {
     console.log('error updating post')
   }
+}
+
+export const deletePost = async (token, _id) => {
+    try {
+        const response = await fetch(`${baseURL}/posts/${[_id]}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        });
+        const data = await response.json();
+        return data;
+    }
+    catch (error) 
+    { 
+        throw error;
+    }
 }
 
 

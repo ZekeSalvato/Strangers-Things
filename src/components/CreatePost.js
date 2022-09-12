@@ -3,7 +3,7 @@ import { createPost } from '../api';
 
 const CreatePost = ({ token, fetchPosts, navigate }) => {
   const newPost = {
-    title: 'Jasons new new post',
+    title: 'Jasons neww newww post',
     description: 'testing 9/10',
     price: 'free',
     location: 'NY',

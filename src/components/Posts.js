@@ -1,8 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { deletePost } from '../api';
 
 const Posts = ({ posts }) => {
-  
+const navigate = useNavigate();
   return (
     <div id='outer div element'>
     {
@@ -16,16 +17,30 @@ const Posts = ({ posts }) => {
             <p>Location: {location}</p>
             {
               isAuthor ? (
-                <Link to={`/posts/edit-post/${_id}`}>Edit</Link>
-              ) : (
-                <Link to={`/posts/${_id}`}>View</Link>
-              )
-            }
-          </div>
-        )
+                        <div>
+                            <button>
+                                <Link to={`/posts/edit-post/${_id}`}>Edit</Link>
+                            </button>
+                            <button onClick={() => {
+                                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                            }}>
+                                <Link to={`/posts`}>Delete</Link>
+                            </button>
+                        </div>
+                    ) : (
+                        <button>
+                        <Link to={`/posts/${_id}`}>View</Link>
+                        </button>
+                    )
+                  }
+                  <button>
+                    <Link to={'/posts/create-post'}>Add Your Own Post</Link>
+                  </button>
+              </div>
+          )
       })
-    }
-  </div>
+          }
+      </div>
   )
 }
 
