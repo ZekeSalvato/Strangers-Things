@@ -5,34 +5,34 @@ import { createMessage } from '../api';
 const SendMessage = ({ postID, token }) => {
   const [message, setMessage] = useState({content: ''});
   // we need 3 things to make this request
-    // Post-id, token, message object containing the content of the message
-    
-  async function addMessage() {
-    await createMessage({postID, message, token})
-  }
+  // Post-id, token, message object containing the content of the message
   
-  return (
-    <form onSubmit={ (ev)=> {
-      ev.preventDefault();
-      addMessage();
-    }}>
+  async function addMessage() {
+      await createMessage({postID, message, token})
+    }
+    
+    return (
+        <form onSubmit={ (ev)=> {
+            ev.preventDefault();
+            addMessage();
+        }}>
       <input
         type='text'
         placeholder='Enter Message'
         onChange={ (ev) => setMessage({content: ev.target.value}) }
-      />
+        />
       <button type='submit'>Send Message</button>
     </form>
   )
 }
 
 const SinglePostView = ({ posts, token }) => {
-  const [activateMessage, setActivateMessage] = useState(false);
-  
-  const { postID } = useParams();
-  
-  const [currentPost] = posts.filter(post => post._id === postID);
-  
+    const [activateMessage, setActivateMessage] = useState(false);
+    
+    const { postID } = useParams();
+    
+    const [currentPost] = posts.filter(post => post._id === postID);
+    
   const {title, description, location, price, willDeliver} = currentPost;
   
   return (

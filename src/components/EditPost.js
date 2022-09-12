@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { updatePost } from '../api';
+import { updatePost, deletePost } from '../api';
 
 const EditPost = ({ posts, token }) => {
   const { postID } = useParams();
-  
   const [currentPost] = posts.filter(post => post._id === postID);
-  
   const {title, description, location, price, willDeliver} = currentPost;
-  
   const [newTitle, setNewTitle] = useState(title);
   const [newDescription, setNewDesc] = useState(description);
   const [newLocation, setNewLocation] = useState(location);
@@ -61,6 +58,9 @@ const EditPost = ({ posts, token }) => {
         onChange={(ev) => setNewWillDeliver(ev.target.checked)}
       />
       <button type='submit'>Edit Post</button>
+      <button onClick={() => {
+        deletePost(token, postID);}
+      }>Delete</button>
     </form>
   )
 }

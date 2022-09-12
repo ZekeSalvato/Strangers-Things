@@ -15,7 +15,6 @@ export const getPosts = async(token) => {
   }
 }
 
-
 export const registerUser = async (username, password) => {
   try {
     const response = await fetch(`${baseURL}/users/register`, {
@@ -51,16 +50,12 @@ export const loginUser = async (username, password) => {
         }
       })
     })
-    
     const result = await response.json();
-    
     return result;
-    
   } catch(ex) {
     console.log('error logging in user')
   }
 }
-
 
 export const getUserDetails = async (token) => {
   try {
@@ -70,15 +65,12 @@ export const getUserDetails = async (token) => {
         'Authorization': `Bearer ${token}`
       },
     })
-    
     const result = await response.json();
     return result;
-    
   } catch(ex) {
     console.log('error getting users details')
   }
-}
-
+}                       
 
 export const createPost = async (token, {title, description, price, location, willDeliver})=> {
   try {
@@ -106,7 +98,6 @@ export const createPost = async (token, {title, description, price, location, wi
   }
 }
 
-
 export const updatePost = async ({token, title, description, price, location, willDeliver, _id})=> {
   try {
     const response = await fetch(`${baseURL}/posts/${[_id]}`, {
@@ -133,17 +124,17 @@ export const updatePost = async ({token, title, description, price, location, wi
   }
 }
 
-export const deletePost = async (token, _id) => {
+export const deletePost = async (token, postID) => {
     try {
-        const response = await fetch(`${baseURL}/posts/${[_id]}`, {
+        const response = await fetch(`${baseURL}/posts/${[postID]}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
-            },
+            }
         });
-        const data = await response.json();
-        return data;
+        const results = await response.json();
+        return results;
     }
     catch (error) 
     { 
@@ -154,7 +145,7 @@ export const deletePost = async (token, _id) => {
 
 export const createMessage = async ({postID, token, message}) => {
   try {
-    const respons = await fetch(`${baseURL}/posts/${postID}/messages`, {
+    const response = await fetch(`${baseURL}/posts/${postID}/messages`, {
      method: 'POST',
      headers: {
       'Content-Type': 'application/json',
@@ -164,6 +155,7 @@ export const createMessage = async ({postID, token, message}) => {
       message
      })
     })
+    const results = await response.json();
   } catch(ex) {
     console.log('error creating message')
   }
