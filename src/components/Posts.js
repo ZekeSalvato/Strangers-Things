@@ -1,14 +1,35 @@
 import React, { useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
-import { deletePost, } from '../api';
+import { Link } from 'react-router-dom';
 
-const Posts = ({ posts }) => {
-    const navigate = useNavigate();
-    const { postID } = useParams();
+const Posts = ({ posts, token }) => {
+    const [searchString, setSearchString] = useState('');
+    function searchFunction(post, str) {
+        const { title, description, location } = post;
+        if (title.includes(str) || description.includes(str) || location.includes(str)) {
+            return post;
+        }
+    }
+    const searchedPosts = posts.filter(post => searchFunction(post, searchString));
+    const searchResults = searchString.length ? searchedPosts : posts;
+    
     return (
+        <div>
         <div id='outer div element'>
+            <form onSubmit={ev => {
+                ev.preventDefault();
+            }}>
+                <input type='text' placeholder='Search' onChange={(ev) => setSearchString(ev.target.value)}></input>
+            </form>
+            </div>
+            <div>
+                {token ? (
+                    <button type='submit'>
+                        <Link to='/posts/create-post'>Create Post </Link>
+                    </button>
+                )  : (null)}
+            </div>
             {
-                posts.map((post) => {
+                searchResults.map((post) => {
                     const { description, location, price, title, _id, isAuthor } = post;
                     return (
                         <div key={_id}>
@@ -29,9 +50,9 @@ const Posts = ({ posts }) => {
                                     </button>
                                 )
                             }
-                            <button>
-                                <Link to={'/posts/create-post'}>Add Your Own Post</Link>
-                            </button>
+                            {/* <button> */}
+                                {/* <Link to={'/posts/create-post'}>Add Your Own Post</Link> */}
+                            {/* </button> */}
                         </div>
                     )
                 })
