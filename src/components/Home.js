@@ -3,10 +3,17 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
-    <div>
-      <h1>Welcome to Stranger's Things!</h1>
+    <div style={{
+      display:'flex',
+      flexDirection:'column',
+      justifyContent:'center'
+    }}>
+      <h1 style={{
+        textAlign:'center'
+      }}>Welcome to Stranger's Things!</h1>
       <button>
-        <Link to='/posts/create-post'>Add a Post</Link>
+        <Link to='/posts/create-post' style={{
+        }}>Add a Post</Link>
       </button>
     </div>
   )

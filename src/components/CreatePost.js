@@ -18,7 +18,7 @@ const CreatePost = ({ token, fetchPosts, navigate }) => {
     }
 
     async function addPost() {
-        const results = await createPost(token, newPost)
+        const result = await createPost(token, newPost)
         fetchPosts();
         navigate(`/posts`);
     }
@@ -26,40 +26,36 @@ const CreatePost = ({ token, fetchPosts, navigate }) => {
     return (
 
         // This needs to be a form that accepts the 5 request parameters for creating a post
-        <form onSubmit={ (ev) => {
-            ev.preventDefault();
-            addPost();
-            
-          }}>
+        <form>
             <input 
               type='text'
-              placeholder={title}
-              onChange={(ev) => setTitle(ev.target.value)}
+              placeholder='Title'
+              onChange={(event) => setTitle(event.target.value)}
             />
             <input 
               type='text'
-              placeholder={description}
-              onChange={(ev) => setDescription(ev.target.value)}
+              placeholder='Description'
+              onChange={(event) => setDescription(event.target.value)}
             />
             <input 
               type='text'
-              placeholder={location}
-              onChange={(ev) => setLocation(ev.target.value)}
+              placeholder='Location'
+              onChange={(event) => setLocation(event.target.value)}
             />
             <input 
               type='text'
-              placeholder={price}
-              onChange={(ev) => setPrice(ev.target.value)}
+              placeholder='Price'
+              onChange={(event) => setPrice(event.target.value)}
             />
             <input 
               type='checkbox'
               checked={setWillDeliver}
-              onChange={(ev) => setWillDeliver(ev.target.checked)}
+              onChange={(event) => setWillDeliver(event.target.checked)}
             />
             <button 
                 type='submit' 
-                onClick={(ev) =>{
-                    ev.preventDefault();
+                onClick={(event) =>{
+                    event.preventDefault();
                     addPost();
                 }}>
                 Create a New Post

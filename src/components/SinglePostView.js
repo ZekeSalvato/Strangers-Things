@@ -36,9 +36,16 @@ const SinglePostView = ({ posts, token }) => {
   const {title, description, location, price, willDeliver} = currentPost;
   
   return (
-    <div>
-      <div>
-        <h3>{title}</h3>
+    <div style={{
+      backgroundColor: '#b9c2ca'
+    }}>
+      <div style={{
+        backgroundColor: '#edf1f5',
+        padding: '2rem',
+    }}>
+        <h3 style={{
+          textDecoration: 'underline'
+        }}>{title}</h3>
         <p>Description: {description}</p>
         <p>Price: {price}</p>
         <p>Location: {location}</p>

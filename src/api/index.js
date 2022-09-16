@@ -117,7 +117,6 @@ export const updatePost = async ({token, title, description, price, location, wi
       })
     })
     const result = await response.json();
-    alert("Post Edited");
     return result; 
   } catch(ex) {
     console.log('error updating post')

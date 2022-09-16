@@ -19,6 +19,8 @@ import {
   getUserDetails
 } from './api';
 
+
+
 const App = () => {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState('');
